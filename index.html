@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keep Falling — Streetwear from Medellín</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --black:  #000000;
+  --white:  #ffffff;
+  --gray:   #8D8D95;
+  --accent: #A3FF12;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0a0a0a;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── SCREEN OVERLAY EFFECTS ─── */
+.grain {
+  position: fixed; inset: 0; z-index: 999; pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  animation: grain-anim 0.4s steps(1) infinite;
+}
+@keyframes grain-anim {
+  0%  { background-position: 0 0; }
+  25% { background-position: -40px 30px; }
+  50% { background-position: 60px -20px; }
+  75% { background-position: -30px 60px; }
+}
+.scanlines {
+  position: fixed; inset: 0; z-index: 998; pointer-events: none;
+  background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);
+}
+
+/* ─── SHELL ─── */
+.shell {
+  min-height: 100vh;
+}
+
+/* ─── MAIN ─── */
+.main {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ─── PAGES ─── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ══════════════════════════════
+   GLOBAL NAV (in-page)
+══════════════════════════════ */
+.top-nav {
+  position: sticky; top: 0; z-index: 90;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #1a1a1a;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 5%;
+  height: 56px;
+}
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem; letter-spacing: 3px;
+  color: var(--white);
+}
+.nav-links-row { display: flex; gap: 32px; }
+.nav-link {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gray);
+  cursor: pointer; transition: color 0.2s;
+  position: relative;
+}
+.nav-link::after {
+  content: ''; position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.25s;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link:hover::after { width: 100%; }
+.cart-btn {
+  font-size: 10px; letter-spacing: 2px;
+  color: var(--gray); cursor: pointer;
+  border: 1px solid #222;
+  padding: 7px 16px;
+  transition: all 0.2s;
+  position: relative;
+}
+.cart-btn:hover { border-color: var(--accent); color: var(--white); }
+.cart-dot {
+  position: absolute; top: -5px; right: -5px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent); color: #000;
+  font-size: 8px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ══════════════════════════════
+   PAGE 01 — HOME
+══════════════════════════════ */
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 80px 5%;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image:
+    linear-gradient(#fff 1px, transparent 1px),
+    linear-gradient(90deg, #fff 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-title-keep {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 15vw, 11rem);
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--white);
+  display: block;
+  animation: glitch-hero 7s infinite;
+}
+@keyframes glitch-hero {
+  0%,78%,100% { transform:translate(0); text-shadow:none; }
+  79%  { transform:translate(-5px,0); text-shadow: 4px 0 var(--accent), -4px 0 var(--gray); clip-path:inset(0 0 70% 0); }
+  80%  { transform:translate(5px,0); text-shadow:-4px 0 var(--accent), 4px 0 var(--gray); clip-path:inset(30% 0 40% 0); }
+  81%  { transform:translate(-3px,2px); text-shadow: 3px 0 var(--accent); clip-path:inset(70% 0 0 0); }
+  82%  { transform:translate(3px,-2px); text-shadow:-3px 0 var(--gray); clip-path:inset(0 0 85% 0); }
+  83%  { transform:translate(-2px,0); text-shadow: 2px 0 var(--accent); clip-path:inset(45% 0 30% 0); }
+  84%  { transform:translate(0); text-shadow:none; clip-path:none; }
+}
+
+/* ─── PRODUCT NAME HOVER (subtle accent color shift) ─── */
+.piece-name, .shop-name {
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.piece-card:hover .piece-name,
+.shop-card:hover .shop-name {
+  color: var(--accent);
+}
+.hero-title-falling {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 15vw, 11rem);
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  color: var(--accent);
+  display: block;
+  animation: glitch-hero 7s infinite 0.18s;
+}
+.hero-sub {
+  margin-top: 28px;
+  font-size: 0.8rem; letter-spacing: 3px;
+  color: var(--gray); font-weight: 300;
+  max-width: 400px;
+}
+.hero-cta {
+  margin-top: 40px;
+  display: inline-block;
+  padding: 14px 56px;
+  border: 1px solid var(--white);
+  font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; cursor: pointer;
+  color: var(--white);
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.hero-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--accent);
+  transform: translateX(-100%);
+  transition: transform 0.25s;
+  z-index: 0;
+}
+.hero-cta:hover::before { transform: translateX(0); }
+.hero-cta:hover { color: #000; border-color: var(--accent); }
+.hero-cta span { position: relative; z-index: 1; }
+.hero-scroll-line {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-bar {
+  width: 1px; height: 52px;
+  background: linear-gradient(to bottom, var(--gray), transparent);
+  animation: scroll-anim 2.2s ease-in-out infinite;
+}
+@keyframes scroll-anim {
+  0%   { transform:scaleY(0); transform-origin:top; opacity:0; }
+  50%  { transform:scaleY(1); transform-origin:top; opacity:1; }
+  100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
+}
+.scroll-txt {
+  font-size: 8px; letter-spacing: 3px; color: #444;
+  text-transform: uppercase; writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* MARQUEE */
+.marquee-bar {
+  background: var(--accent);
+  padding: 11px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
+}
+.marquee-track span {
+  font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; color: #000;
+  font-weight: 700; padding: 0 24px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* COLLECTIONS STRIP */
+.collections-section {
+  padding: 80px 5%;
+  border-bottom: 1px solid #111;
+}
+.section-header {
+  font-size: 9px; letter-spacing: 5px;
+  color: var(--gray); text-transform: uppercase;
+  margin-bottom: 40px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-header::after {
+  content: ''; flex: 1; height: 1px;
+  background: #1a1a1a;
+}
+.coll-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #111;
+}
+.coll-card {
+  background: #000;
+  padding: 40px 28px;
+  cursor: pointer; transition: background 0.2s;
+  position: relative;
+}
+.coll-card:hover { background: #0f0f0f; }
+.coll-card:hover .coll-arrow { color: var(--accent); }
+.coll-num {
+  font-size: 9px; letter-spacing: 2px;
+  color: #333; margin-bottom: 16px;
+}
+.coll-name {
+  font-family: var(--font-display);
+  font-size: 2rem; letter-spacing: 2px;
+  color: var(--white); margin-bottom: 8px;
+}
+.coll-desc {
+  font-size: 10px; letter-spacing: 1px;
+  color: var(--gray); font-weight: 300;
+}
+.coll-arrow {
+  position: absolute; bottom: 24px; right: 24px;
+  color: #333; font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+/* PHRASES ROTATOR */
+.phrases-section {
+  padding: 100px 5%;
+  text-align: center;
+  background: #000;
+  min-height: 260px;
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid #111;
+}
+.phrase-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: 4px; line-height: 1.2;
+  color: var(--white);
+  opacity: 0;
+  animation: phrase-fade 12s ease-in-out infinite;
+}
+@keyframes phrase-fade {
+  0%,5%   { opacity:0; transform:translateY(12px); }
+  15%,75% { opacity:1; transform:translateY(0); }
+  90%,100%{ opacity:0; transform:translateY(-12px); }
+}
+
+/* SELECTED PIECES */
+.pieces-section { padding: 80px 5%; border-bottom: 1px solid #111; }
+.pieces-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.piece-card { cursor: pointer; }
+.piece-img {
+  aspect-ratio: 3/4;
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px; position: relative; overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+/* ─── PRODUCT IMAGES (works inside piece-img, shop-img, main-img, thumb) ─── */
+.piece-img img,
+.shop-img img,
+.main-img img,
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.piece-card:hover .piece-img img,
+.shop-card:hover .shop-img img {
+  transform: scale(1.04);
+}
+.piece-card:hover .piece-img { border-color: var(--accent); }
+.piece-img-label {
+  font-size: 8px; letter-spacing: 2px;
+  color: #222; text-transform: uppercase;
+}
+.piece-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(transparent 50%, rgba(0,0,0,0.85));
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 12px;
+}
+.piece-card:hover .piece-overlay { opacity: 1; }
+.quick-add-btn {
+  width: 100%; padding: 10px;
+  background: var(--accent); color: #000;
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; border: none;
+  cursor: pointer; font-family: var(--font-body); font-weight: 700;
+}
+.piece-name {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--white); text-transform: uppercase; margin-bottom: 4px;
+}
+.piece-price { font-size: 11px; color: var(--gray); }
+
+/* ─── DUAL PRICE (old struck out + new launch price) ─── */
+.price-old {
+  color: var(--gray);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: 0.55;
+  margin-right: 8px;
+  font-weight: 300;
+  position: relative;
+  display: inline-block;
+}
+.price-new {
+  color: var(--white);
+  font-weight: 500;
+}
+.piece-card:hover .price-old,
+.shop-card:hover .price-old {
+  animation: price-glitch 0.6s steps(2) infinite;
+  color: var(--accent);
+  opacity: 0.8;
+}
+@keyframes price-glitch {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-1px, 1px); }
+  50%  { transform: translate(1px, -1px); }
+  75%  { transform: translate(-1px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ─── SOLD OUT STATE ─── */
+.shop-card.sold-out,
+.piece-card.sold-out {
+  cursor: default;
+}
+.shop-card.sold-out .shop-img img,
+.piece-card.sold-out .piece-img img {
+  filter: grayscale(0.6) brightness(0.5);
+}
+.shop-card.sold-out:hover .shop-img img,
+.piece-card.sold-out:hover .piece-img img {
+  transform: none;
+}
+.shop-card.sold-out .price-new,
+.piece-card.sold-out .price-new {
+  color: var(--gray);
+  text-decoration: line-through;
+}
+.shop-card.sold-out .price-old,
+.piece-card.sold-out .price-old {
+  display: none;
+}
+.shop-card.sold-out:hover .shop-name,
+.piece-card.sold-out:hover .piece-name {
+  color: var(--gray);
+}
+.sold-out-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--black);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-size: 9px; letter-spacing: 2px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  z-index: 5;
+  font-weight: 700;
+}
+.shop-card.sold-out .quick-add-btn,
+.piece-card.sold-out .quick-add-btn {
+  background: #222;
+  color: #555;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.piece-dots { display: flex; gap: 5px; margin-top: 8px; }
+.pdot {
+  width: 10px; height: 10px; border-radius: 50%; cursor: pointer;
+  transition: transform 0.15s;
+}
+.pdot:hover { transform: scale(1.4); }
+
+/* FALL SECTION */
+.fall-section {
+  padding: 80px 5%;
+  background: #000;
+  border-bottom: 1px solid #111;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.fall-word {
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 22vw, 18rem);
+  letter-spacing: -0.02em;
+  color: var(--white);
+  cursor: pointer; user-select: none;
+  transition: all 0.05s;
+  line-height: 1;
+}
+.fall-word.shake {
+  animation: fall-shake 0.4s ease-in-out;
+}
+@keyframes fall-shake {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  10%  { transform: translate(-8px,4px) rotate(-2deg); }
+  20%  { transform: translate(8px,-4px) rotate(2deg); }
+  30%  { transform: translate(-6px,6px) rotate(-1deg); }
+  40%  { transform: translate(6px,-2px) rotate(1.5deg); }
+  50%  { transform: translate(-4px,4px) rotate(-1deg); }
+  60%  { transform: translate(4px,-4px) rotate(0.5deg); }
+  70%  { transform: translate(-2px,2px) rotate(-0.5deg); }
+  80%  { transform: translate(2px,-2px) rotate(0.2deg); }
+  90%  { transform: translate(-1px,1px) rotate(0deg); }
+}
+.fall-hint {
+  text-align: center; font-size: 9px;
+  letter-spacing: 3px; color: #333;
+  margin-top: 20px; text-transform: uppercase;
+}
+
+/* ABOUT STRIP */
+.about-strip {
+  background: #050505;
+  padding: 60px 5%;
+  border-bottom: 1px solid #111;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-eyebrow {
+  font-size: 9px; letter-spacing: 4px;
+  color: var(--gray); text-transform: uppercase; margin-bottom: 20px;
+}
+.about-headline {
+  font-family: var(--font-display);
+  font-size: 2.2rem; letter-spacing: 2px;
+  line-height: 1.1; margin-bottom: 20px;
+}
+.about-body {
+  font-size: 0.8rem; color: var(--gray);
+  line-height: 1.9; font-weight: 300;
+}
+.about-img-placeholder {
+  aspect-ratio: 3/4;
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  display: flex; align-items: center; justify-content: center;
+}
+.about-img-label {
+  font-size: 9px; letter-spacing: 2px; color: #222;
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  border-top: 1px solid #111;
+  padding: 40px 5%;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1rem; letter-spacing: 5px; color: #333;
+}
+.footer-copy {
+  font-size: 9px; letter-spacing: 2px;
+  color: #333; text-transform: uppercase;
+}
+.footer-links-row { display: flex; gap: 24px; }
+.footer-link {
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--gray); text-transform: uppercase;
+  cursor: pointer; transition: color 0.2s;
+}
+.footer-link:hover { color: var(--accent); }
+
+/* ══════════════════════════════
+   PAGE 02 — SHOP
+══════════════════════════════ */
+.filter-bar {
+  padding: 16px 5%;
+  border-bottom: 1px solid #111;
+  background: #050505;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.filter-btn {
+  padding: 7px 18px;
+  border: 1px solid #1a1a1a;
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray);
+  cursor: pointer; transition: all 0.15s;
+  background: transparent;
+}
+.filter-btn:hover,
+.filter-btn.active { background: var(--white); color: #000; border-color: var(--white); }
+.filter-sep { width: 1px; height: 24px; background: #1a1a1a; margin: 0 8px; }
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: #111;
+  padding: 0;
+}
+.shop-card {
+  background: #000;
+  padding: 0 0 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.shop-card:hover { background: #080808; }
+.shop-img {
+  aspect-ratio: 3/4;
+  background: #0d0d0d;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.shop-card:hover .shop-img { }
+.shop-img-label { font-size: 8px; letter-spacing: 2px; color: #1a1a1a; }
+.shop-img-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end;
+  opacity: 0; transition: opacity 0.25s;
+}
+.shop-card:hover .shop-img-overlay { opacity: 1; }
+.shop-info { padding: 0 16px; }
+.shop-name {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--white); text-transform: uppercase; margin-bottom: 5px;
+}
+.shop-price { font-size: 11px; color: var(--gray); margin-bottom: 8px; }
+.shop-sizes { display: flex; gap: 4px; }
+.size-tag {
+  border: 1px solid #1a1a1a;
+  padding: 3px 7px;
+  font-size: 8px; letter-spacing: 1px; color: #444;
+}
+
+/* ══════════════════════════════
+   PAGE 03 — PRODUCT DETAIL
+══════════════════════════════ */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 56px);
+}
+.detail-gallery {
+  position: sticky; top: 56px;
+  height: calc(100vh - 56px);
+  background: #030303;
+  border-right: 1px solid #111;
+  display: flex; flex-direction: column;
+  padding: 24px;
+  gap: 12px;
+}
+.main-img {
+  flex: 1;
+  background: #0d0d0d;
+  border: 1px solid #111;
+  display: flex; align-items: center; justify-content: center;
+}
+.main-img-label { font-size: 9px; letter-spacing: 2px; color: #222; }
+.thumb-row { display: flex; gap: 8px; }
+.thumb {
+  width: 64px; aspect-ratio: 1;
+  background: #0d0d0d; border: 1px solid #1a1a1a;
+  cursor: pointer; transition: border-color 0.2s; flex-shrink: 0;
+  overflow: hidden;
+}
+.thumb:hover, .thumb.active { border-color: var(--accent); }
+.detail-info {
+  padding: 48px 5%;
+  overflow-y: auto;
+}
+.detail-breadcrumb {
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--gray); text-transform: uppercase; margin-bottom: 20px;
+}
+.detail-name {
+  font-family: var(--font-display);
+  font-size: 3rem; letter-spacing: 2px;
+  line-height: 1; margin-bottom: 12px;
+}
+.detail-price {
+  font-size: 1.2rem; color: var(--gray);
+  margin-bottom: 36px; font-weight: 300;
+}
+.detail-label {
+  font-size: 9px; letter-spacing: 3px;
+  color: #444; text-transform: uppercase; margin-bottom: 10px;
+}
+.size-row { display: flex; gap: 6px; margin-bottom: 28px; }
+.size-opt {
+  border: 1px solid #1a1a1a;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; letter-spacing: 1px; color: var(--gray);
+  cursor: pointer; transition: all 0.15s;
+}
+.size-opt:hover { border-color: var(--white); color: var(--white); }
+.size-opt.active { border-color: var(--white); color: var(--white); background: var(--white); color: #000; }
+.color-row { display: flex; gap: 8px; margin-bottom: 28px; }
+.color-opt {
+  width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+  transition: transform 0.15s;
+}
+.color-opt.active { box-shadow: 0 0 0 2px #000, 0 0 0 3.5px var(--white); }
+.color-opt:hover { transform: scale(1.2); }
+.detail-desc {
+  font-size: 12px; color: var(--gray);
+  line-height: 1.9; font-weight: 300; margin-bottom: 32px;
+}
+.add-to-cart {
+  width: 100%; padding: 16px;
+  background: var(--accent); color: #000;
+  font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; border: none;
+  cursor: pointer; font-family: var(--font-body); font-weight: 700;
+  transition: all 0.2s;
+}
+.add-to-cart:hover { background: var(--white); }
+.payment-info {
+  margin-top: 20px;
+  border: 1px solid #111;
+  padding: 16px;
+  font-size: 10px; color: #444;
+  line-height: 1.8; letter-spacing: 0.5px;
+  background: #050505;
+}
+
+/* ══════════════════════════════
+   PAGE 04 — ABOUT
+══════════════════════════════ */
+.about-hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 56px);
+}
+.about-img-side {
+  background: #0a0a0a;
+  border-right: 1px solid #111;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; letter-spacing: 2px; color: #1a1a1a;
+}
+.about-copy-side {
+  background: #000;
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 24px;
+}
+.about-brand-phrase {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 2px; line-height: 1.15;
+}
+.about-brand-body {
+  font-size: 13px; color: var(--gray);
+  line-height: 2; font-weight: 300; max-width: 440px;
+}
+.about-brand-tagline {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--gray); border-left: 2px solid var(--accent);
+  padding-left: 16px; font-style: italic;
+}
+.values-strip {
+  display: flex;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  background: #000;
+}
+.value-item {
+  flex: 1; padding: 36px 24px;
+  border-right: 1px solid #111; text-align: center;
+}
+.value-item:last-child { border-right: none; }
+.value-name {
+  font-family: var(--font-display);
+  font-size: 1rem; letter-spacing: 2px;
+  color: var(--white); margin-bottom: 8px;
+}
+.value-desc { font-size: 10px; color: #333; letter-spacing: 0.5px; line-height: 1.6; }
+.made-in-strip {
+  padding: 32px 5%;
+  background: #050505;
+  display: flex; justify-content: center; gap: 48px;
+  border-bottom: 1px solid #111;
+}
+.made-item {
+  text-align: center;
+  font-size: 9px; letter-spacing: 2px;
+  color: #333; text-transform: uppercase; line-height: 1.8;
+}
+.made-value { color: var(--white); font-size: 11px; }
+
+/* ══════════════════════════════
+   PAGE 05 — CHECKOUT
+══════════════════════════════ */
+.checkout-progress {
+  display: flex;
+  border-bottom: 1px solid #111;
+  background: #050505;
+}
+.progress-step {
+  flex: 1; padding: 16px 5%;
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: #333;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+}
+.progress-step.active { color: var(--white); border-bottom-color: var(--accent); }
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  min-height: calc(100vh - 120px);
+}
+.checkout-left {
+  padding: 48px 5%;
+  border-right: 1px solid #111;
+}
+.checkout-right {
+  padding: 48px 40px;
+  background: #030303;
+}
+.form-section-title {
+  font-size: 9px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gray);
+  margin-bottom: 24px; margin-top: 36px;
+}
+.form-section-title:first-child { margin-top: 0; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 9px; letter-spacing: 2px; color: #444; text-transform: uppercase; margin-bottom: 7px; }
+.form-input {
+  width: 100%; height: 40px;
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  color: var(--white);
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  transition: border-color 0.2s;
+}
+.form-input:focus { outline: none; border-color: var(--accent); }
+.payment-option {
+  border: 1px solid #1a1a1a;
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 8px; cursor: pointer;
+  transition: border-color 0.2s; background: #050505;
+}
+.payment-option:hover { border-color: #333; }
+.payment-option.selected { border-color: var(--white); background: #0d0d0d; }
+.radio-circle {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1px solid #333; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.radio-fill {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent);
+}
+.pm-name { font-size: 11px; letter-spacing: 1px; color: var(--white); }
+.pm-sub { font-size: 9px; letter-spacing: 0.5px; color: var(--gray); margin-top: 2px; }
+.checkout-submit {
+  width: 100%; padding: 16px; margin-top: 28px;
+  background: var(--accent); color: #000;
+  font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; border: none;
+  cursor: pointer; font-family: var(--font-body); font-weight: 700;
+}
+.order-title {
+  font-size: 9px; letter-spacing: 4px;
+  color: var(--gray); text-transform: uppercase; margin-bottom: 28px;
+}
+.order-item {
+  display: flex; gap: 14px; margin-bottom: 16px;
+  padding-bottom: 16px; border-bottom: 1px solid #111;
+}
+.order-thumb {
+  width: 60px; height: 60px;
+  background: #0d0d0d; border: 1px solid #111; flex-shrink: 0;
+}
+.order-name { font-size: 11px; letter-spacing: 1px; color: var(--white); margin-bottom: 4px; }
+.order-meta { font-size: 9px; letter-spacing: 0.5px; color: var(--gray); }
+.order-price { font-size: 11px; color: var(--gray); margin-left: auto; }
+.order-total-row {
+  display: flex; justify-content: space-between;
+  padding: 8px 0; font-size: 11px; color: var(--gray);
+}
+.order-total-row.grand {
+  font-size: 13px; color: var(--white); font-weight: 500;
+  border-top: 1px solid #111; margin-top: 8px; padding-top: 16px;
+}
+.shipping-note {
+  margin-top: 24px;
+  border: 1px solid #111; padding: 14px;
+  font-size: 10px; color: #333;
+  line-height: 1.9; background: #030303;
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="scanlines"></div>
+
+<div class="shell">
+
+<!-- ─── MAIN ─── -->
+<div class="main" id="main">
+
+<!-- ════ PAGE 01: HOME ════ -->
+<div class="page active" id="page-home">
+
+  <div class="top-nav">
+    <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">KEEP FALLING</div>
+    <div class="nav-links-row">
+      <div class="nav-link" onclick="showPage('shop')">Shop</div>
+      <div class="nav-link">Collections</div>
+      <div class="nav-link" onclick="showPage('about')">About</div>
+      <div class="nav-link">Contact</div>
+    </div>
+    <div class="cart-btn" onclick="showPage('checkout')">Cart <div class="cart-dot">2</div></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <span class="hero-title-keep">KEEP</span>
+    <span class="hero-title-falling">FALLING</span>
+    <div class="hero-sub">Techno-driven garments designed for movement, identity, and transformation.</div>
+    <div class="hero-cta" onclick="showPage('shop')">
+      <span>Shop Collection</span>
+    </div>
+    <div class="hero-scroll-line">
+      <div class="scroll-bar"></div>
+      <div class="scroll-txt">Scroll</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>// DANCE WITH ME</span><span>/// KEEP FALLING</span><span>/// TECHNO CULTURE</span><span>/// BOGOTÁ</span><span>/// MEDELLÍN</span><span>/// DANCE WITH ME</span><span>/// KEEP FALLING</span><span>/// TECHNO CULTURE</span><span>/// BOGOTÁ</span><span>/// MEDELLÍN</span><span>// DANCE WITH ME</span><span>/// KEEP FALLING</span><span>/// TECHNO CULTURE</span><span>/// BOGOTÁ</span><span>/// MEDELLÍN</span><span>/// DANCE WITH ME</span><span>/// KEEP FALLING</span><span>/// TECHNO CULTURE</span><span>/// BOGOTÁ</span><span>/// MEDELLÍN</span>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS -->
+  <section class="collections-section">
+    <div class="section-header">Collections</div>
+    <div class="coll-grid">
+      <div class="coll-card" onclick="showPage('shop')">
+        <div class="coll-num">01</div>
+        <div class="coll-name">BASICS</div>
+        <div class="coll-desc">Essential pieces in black, white & gray</div>
+        <div class="coll-arrow">→</div>
+      </div>
+      <div class="coll-card" onclick="showPage('shop')">
+        <div class="coll-num">02</div>
+        <div class="coll-name">DROP 01</div>
+        <div class="coll-desc">Large graphic — first collection</div>
+        <div class="coll-arrow">→</div>
+      </div>
+      <div class="coll-card" onclick="showPage('shop')">
+        <div class="coll-num">03</div>
+        <div class="coll-name">DROP 02</div>
+        <div class="coll-desc">Large graphic — second collection</div>
+        <div class="coll-arrow">→</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROTATING PHRASE -->
+  <section class="phrases-section" id="phrase-section">
+    <div class="phrase-text" id="phrase-display">LOSE YOURSELF IN THE RHYTHM<br>BECOME SOMETHING ELSE</div>
+  </section>
+
+  <!-- SELECTED PIECES -->
+  <section class="pieces-section">
+    <div class="section-header">Selected Pieces</div>
+    <div class="pieces-grid">
+
+      <div class="piece-card" onclick="showPage('detail')">
+        <div class="piece-img">
+          <img src="images/products/falling-voodoo-ray-back.jpg" alt="Voodoo Ray — black tee">
+          <div class="piece-overlay"><button class="quick-add-btn">Quick Add</button></div>
+        </div>
+        <div class="piece-name">Voodoo Ray</div>
+        <div class="piece-price">
+          <span class="price-old">$ 200.000</span>
+          <span class="price-new">$ 180.000 COP</span>
+        </div>
+        <div class="piece-dots">
+          <div class="pdot active" style="background:#111;border:1px solid #555;"></div>
+        </div>
+      </div>
+
+      <div class="piece-card" onclick="showPage('detail')">
+        <div class="piece-img">
+          <img src="images/products/falling-into-you-back.jpg" alt="Falling Into You — white tee">
+          <div class="piece-overlay"><button class="quick-add-btn">Quick Add</button></div>
+        </div>
+        <div class="piece-name">Falling Into You</div>
+        <div class="piece-price">
+          <span class="price-old">$ 170.000</span>
+          <span class="price-new">$ 150.000 COP</span>
+        </div>
+        <div class="piece-dots">
+          <div class="pdot active" style="background:#fff;"></div>
+        </div>
+      </div>
+
+      <div class="piece-card" onclick="showPage('detail')">
+        <div class="piece-img">
+          <img src="images/products/dance-with-me-back.jpg" alt="Dance With Me — black tee">
+          <div class="piece-overlay"><button class="quick-add-btn">Quick Add</button></div>
+        </div>
+        <div class="piece-name">Dance With Me</div>
+        <div class="piece-price">
+          <span class="price-old">$ 170.000</span>
+          <span class="price-new">$ 150.000 COP</span>
+        </div>
+        <div class="piece-dots">
+          <div class="pdot active" style="background:#111;border:1px solid #555;"></div>
+        </div>
+      </div>
+
+      <div class="piece-card" onclick="showPage('detail')">
+        <div class="piece-img">
+          <img src="images/products/halcyon-black.jpg" alt="Halcyon — black top">
+          <div class="piece-overlay"><button class="quick-add-btn">Quick Add</button></div>
+        </div>
+        <div class="piece-name">Halcyon — Black</div>
+        <div class="piece-price">
+          <span class="price-old">$ 85.000</span>
+          <span class="price-new">$ 70.000 COP</span>
+        </div>
+        <div class="piece-dots">
+          <div class="pdot active" style="background:#111;border:1px solid #555;"></div>
+          <div class="pdot" style="background:#fff;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FALL SHAKE -->
+  <section class="fall-section">
+    <div>
+      <div class="fall-word" id="fall-word" onclick="doShake()">FALL</div>
+      <div class="fall-hint">tap it</div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip">
+    <div class="about-img-placeholder">
+      <div class="about-img-label">Campaign photo</div>
+    </div>
+    <div>
+      <div class="about-eyebrow">Our story</div>
+      <div class="about-headline">We fight.<br>We fall.<br>We rise<br>with more style.</div>
+      <div class="about-body" style="margin-top:16px;">
+        Keep Falling is a Colombian clothing brand inspired by rave culture, movement, and transformation. Designed for those who live between sound and identity.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">KEEP FALLING</div>
+    <div class="footer-links-row">
+      <div class="footer-link">Instagram</div>
+      <div class="footer-link">TikTok</div>
+      <div class="footer-link">WhatsApp</div>
+    </div>
+    <div class="footer-copy">© 2026 All rights reserved</div>
+  </footer>
+
+</div><!-- /home -->
+
+<!-- ════ PAGE 02: SHOP ════ -->
+<div class="page" id="page-shop">
+  <div class="top-nav">
+    <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">KEEP FALLING</div>
+    <div class="nav-links-row">
+      <div class="nav-link" style="color:var(--white);">Shop</div>
+      <div class="nav-link">Collections</div>
+      <div class="nav-link" onclick="showPage('about')">About</div>
+      <div class="nav-link">Contact</div>
+    </div>
+    <div class="cart-btn" onclick="showPage('checkout')">Cart <div class="cart-dot">2</div></div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-btn active" data-filter="all" onclick="setFilter(this)">All</div>
+    <div class="filter-btn" data-filter="warehouse-88" onclick="setFilter(this)">Warehouse 88</div>
+    <div class="filter-btn" data-filter="soundscapes" onclick="setFilter(this)">Soundscapes</div>
+    <div class="filter-btn" data-filter="basics" onclick="setFilter(this)">Basics</div>
+    <div class="filter-btn" data-filter="tops" onclick="setFilter(this)">Tops</div>
+    <div class="filter-sep"></div>
+    <div class="filter-btn" data-filter="black" onclick="setFilter(this)">Black</div>
+    <div class="filter-btn" data-filter="white" onclick="setFilter(this)">White</div>
+    <div class="filter-btn" data-filter="gray" onclick="setFilter(this)">Gray</div>
+  </div>
+
+  <div class="shop-grid">
+
+    <!-- ── WAREHOUSE 88 (Drop 01) — Falling line $200k → $180k ── -->
+    <div class="shop-card" data-collection="warehouse-88" data-category="warehouse-88" data-color="black" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/falling-voodoo-ray-back.jpg" alt="Voodoo Ray — black tee with multi-color alien back graphic">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Voodoo Ray</div>
+        <div class="shop-price">
+          <span class="price-old">$ 200.000</span>
+          <span class="price-new">$ 180.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div><div class="size-tag">XL</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card sold-out" data-collection="warehouse-88" data-category="warehouse-88" data-color="black" onclick="showPage('detail')">
+      <div class="shop-img">
+        <div class="sold-out-badge">Sold Out</div>
+        <img src="images/products/falling-phuture-acid-back.jpg" alt="Phuture Acid — black tee with neon green dripping back graphic">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Sold Out</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Phuture Acid</div>
+        <div class="shop-price">
+          <span class="price-old">$ 200.000</span>
+          <span class="price-new">$ 180.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div><div class="size-tag">XL</div></div>
+      </div>
+    </div>
+
+    <!-- ── SOUNDSCAPES (Drop 02) — premium graphic tees $170k → $150k ── -->
+    <div class="shop-card" data-collection="soundscapes" data-category="soundscapes" data-color="white" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/falling-into-you-back.jpg" alt="Falling Into You — white tee with heart graphic back print">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Falling Into You</div>
+        <div class="shop-price">
+          <span class="price-old">$ 170.000</span>
+          <span class="price-new">$ 150.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card" data-collection="soundscapes" data-category="soundscapes" data-color="black" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/dance-with-me-back.jpg" alt="Dance With Me — black tee with neon green dancer graphic">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Dance With Me</div>
+        <div class="shop-price">
+          <span class="price-old">$ 170.000</span>
+          <span class="price-new">$ 150.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card" data-collection="soundscapes" data-category="soundscapes" data-color="white" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/into-the-rythm-back.jpg" alt="Into the Rythm — white tee with KEEP FALLING typography back print">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Into the Rythm</div>
+        <div class="shop-price">
+          <span class="price-old">$ 170.000</span>
+          <span class="price-new">$ 150.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+    <!-- ── BASICS (Autobahn) — $100k → $80k ── -->
+    <div class="shop-card" data-collection="soundscapes" data-category="basics" data-color="black" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/autobahn-black.jpg" alt="Autobahn — basic black tee with logo">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Autobahn — Black</div>
+        <div class="shop-price">
+          <span class="price-old">$ 100.000</span>
+          <span class="price-new">$ 80.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div><div class="size-tag">XL</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card" data-collection="soundscapes" data-category="basics" data-color="white" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/autobahn-white.jpg" alt="Autobahn — basic white tee with logo">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Autobahn — White</div>
+        <div class="shop-price">
+          <span class="price-old">$ 100.000</span>
+          <span class="price-new">$ 80.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div><div class="size-tag">XL</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card" data-collection="soundscapes" data-category="basics" data-color="gray" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/autobahn-gray.jpg" alt="Autobahn — basic gray tee with logo">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Autobahn — Gray</div>
+        <div class="shop-price">
+          <span class="price-old">$ 100.000</span>
+          <span class="price-new">$ 80.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+    <!-- ── TOPS (Halcyon) — $85k → $70k ── -->
+    <div class="shop-card" data-collection="soundscapes" data-category="tops" data-color="black" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/halcyon-black.jpg" alt="Halcyon — black sports top with logo">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Halcyon — Black</div>
+        <div class="shop-price">
+          <span class="price-old">$ 85.000</span>
+          <span class="price-new">$ 70.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">XS</div><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+    <div class="shop-card" data-collection="soundscapes" data-category="tops" data-color="white" onclick="showPage('detail')">
+      <div class="shop-img">
+        <img src="images/products/halcyon-white.jpg" alt="Halcyon — white sports top with logo">
+        <div class="shop-img-overlay"><button class="quick-add-btn" style="position:absolute;bottom:0;left:0;right:0;">Quick Add</button></div>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Halcyon — White</div>
+        <div class="shop-price">
+          <span class="price-old">$ 85.000</span>
+          <span class="price-new">$ 70.000 COP</span>
+        </div>
+        <div class="shop-sizes"><div class="size-tag">XS</div><div class="size-tag">S</div><div class="size-tag">M</div><div class="size-tag">L</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer style="margin-top:1px;">
+    <div class="footer-logo">KEEP FALLING</div>
+    <div class="footer-links-row">
+      <div class="footer-link">Instagram</div><div class="footer-link">TikTok</div><div class="footer-link">WhatsApp</div>
+    </div>
+    <div class="footer-copy">© 2026 All rights reserved</div>
+  </footer>
+</div><!-- /shop -->
+
+<!-- ════ PAGE 03: PRODUCT DETAIL ════ -->
+<div class="page" id="page-detail">
+  <div class="top-nav">
+    <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">KEEP FALLING</div>
+    <div class="nav-links-row">
+      <div class="nav-link" onclick="showPage('shop')">Shop</div>
+      <div class="nav-link">Collections</div>
+      <div class="nav-link" onclick="showPage('about')">About</div>
+      <div class="nav-link">Contact</div>
+    </div>
+    <div class="cart-btn" onclick="showPage('checkout')">Cart <div class="cart-dot">1</div></div>
+  </div>
+  <div class="detail-layout">
+    <div class="detail-gallery">
+      <div class="main-img"><img src="images/products/falling-voodoo-ray-back.jpg" alt="Voodoo Ray — main back graphic view"></div>
+      <div class="thumb-row">
+        <div class="thumb active"><img src="images/products/falling-voodoo-ray-back.jpg" alt=""></div>
+        <div class="thumb"><img src="images/products/falling-phuture-acid-back.jpg" alt=""></div>
+        <div class="thumb"><img src="images/products/falling-into-you-back.jpg" alt=""></div>
+        <div class="thumb"><img src="images/products/dance-with-me-back.jpg" alt=""></div>
+      </div>
+    </div>
+    <div class="detail-info">
+      <div class="detail-breadcrumb">Warehouse 88 / Black</div>
+      <div class="detail-name">VOODOO RAY</div>
+      <div class="detail-price">
+        <span class="price-old">$ 200.000</span>
+        <span class="price-new">$ 180.000 COP</span>
+      </div>
+      <div class="detail-label">Size</div>
+      <div class="size-row">
+        <div class="size-opt">S</div>
+        <div class="size-opt active">M</div>
+        <div class="size-opt">L</div>
+        <div class="size-opt">XL</div>
+      </div>
+      <div class="detail-label">Color</div>
+      <div class="color-row">
+        <div class="color-opt active" style="background:#111;border:1px solid #555;"></div>
+      </div>
+      <div class="detail-label">Description</div>
+      <div class="detail-desc">
+        100% Peruvian cotton, 200gsm. Oversized fit.<br>
+        Back graphic printed via DTG with water-based and reflective vinyl ink.<br>
+        Front and left sleeve: reflective vinyl logo. Made in Medellín.
+      </div>
+      <button class="add-to-cart" onclick="showPage('checkout')">Add to Cart</button>
+      <div class="payment-info">
+        ✦ Nequi · Daviplata · Bre-B · Cash on delivery<br>
+        ✦ Shipping: 20.000 COP nationwide · 10.000 COP Medellín
+      </div>
+    </div>
+  </div>
+</div><!-- /detail -->
+
+<!-- ════ PAGE 04: ABOUT ════ -->
+<div class="page" id="page-about">
+  <div class="top-nav">
+    <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">KEEP FALLING</div>
+    <div class="nav-links-row">
+      <div class="nav-link" onclick="showPage('shop')">Shop</div>
+      <div class="nav-link">Collections</div>
+      <div class="nav-link" style="color:var(--white);">About</div>
+      <div class="nav-link">Contact</div>
+    </div>
+    <div class="cart-btn" onclick="showPage('checkout')">Cart</div>
+  </div>
+  <div class="about-hero-split">
+    <div class="about-img-side">Campaign photo</div>
+    <div class="about-copy-side">
+      <div class="about-eyebrow">Our story</div>
+      <div class="about-brand-phrase">We fight.<br>We fall.<br>We rise<br>with more style.</div>
+      <div class="about-brand-body">Keep Falling is a Colombian clothing brand inspired by rave culture, movement, and transformation. Designed for those who live between sound and identity.</div>
+      <div class="about-brand-tagline">"Built for nights that don't end.<br>Designed for people who don't stay the same."</div>
+      <div class="hero-cta" style="margin-top:8px;font-size:9px;letter-spacing:3px;" onclick="showPage('shop')">
+        <span>View Collection</span>
+      </div>
+    </div>
+  </div>
+  <div class="values-strip">
+    <div class="value-item">
+      <div class="value-name">RESILIENCE</div>
+      <div class="value-desc">Fall and rise<br>with more strength</div>
+    </div>
+    <div class="value-item">
+      <div class="value-name">CREATIVITY</div>
+      <div class="value-desc">Design that<br>tells stories</div>
+    </div>
+    <div class="value-item">
+      <div class="value-name">ELEGANCE</div>
+      <div class="value-desc">Quality in<br>every detail</div>
+    </div>
+    <div class="value-item">
+      <div class="value-name">DISRUPTION</div>
+      <div class="value-desc">Streetwear<br>with soul</div>
+    </div>
+    <div class="value-item">
+      <div class="value-name">COMFORT</div>
+      <div class="value-desc">Made to<br>live in it</div>
+    </div>
+  </div>
+  <div class="made-in-strip">
+    <div class="made-item"><div class="made-value">90% Cotton</div>10% Polyester</div>
+    <div class="made-item"><div class="made-value">Made in Colombia</div>Local production</div>
+    <div class="made-item"><div class="made-value">Coordinadora</div>Nationwide shipping</div>
+    <div class="made-item"><div class="made-value">Medellín</div>Origin</div>
+  </div>
+  <footer>
+    <div class="footer-logo">KEEP FALLING</div>
+    <div class="footer-links-row"><div class="footer-link">Instagram</div><div class="footer-link">TikTok</div><div class="footer-link">WhatsApp</div></div>
+    <div class="footer-copy">© 2026 All rights reserved</div>
+  </footer>
+</div><!-- /about -->
+
+<!-- ════ PAGE 05: CHECKOUT ════ -->
+<div class="page" id="page-checkout">
+  <div class="top-nav">
+    <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">KEEP FALLING</div>
+    <div class="nav-links-row">
+      <div class="nav-link" onclick="showPage('shop')">Shop</div>
+      <div class="nav-link">Collections</div>
+      <div class="nav-link" onclick="showPage('about')">About</div>
+    </div>
+    <div class="cart-btn" onclick="showPage('checkout')">Cart <div class="cart-dot">1</div></div>
+  </div>
+  <div class="checkout-progress">
+    <div class="progress-step active">01 Info</div>
+    <div class="progress-step">02 Shipping</div>
+    <div class="progress-step">03 Payment</div>
+    <div class="progress-step">04 Confirm</div>
+  </div>
+  <div class="checkout-grid">
+    <div class="checkout-left">
+      <div class="form-section-title">Contact information</div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <div class="form-label">First name</div>
+          <input class="form-input" type="text" placeholder="">
+        </div>
+        <div class="form-group">
+          <div class="form-label">Last name</div>
+          <input class="form-input" type="text" placeholder="">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">WhatsApp / Phone</div>
+        <input class="form-input" type="text" placeholder="">
+      </div>
+      <div class="form-group">
+        <div class="form-label">Email (for promotions & updates)</div>
+        <input class="form-input" type="email" placeholder="">
+      </div>
+      <div class="form-section-title">Shipping address</div>
+      <div class="form-group">
+        <div class="form-label">Full address</div>
+        <input class="form-input" type="text" placeholder="">
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <div class="form-label">Neighborhood</div>
+          <input class="form-input" type="text" placeholder="">
+        </div>
+        <div class="form-group">
+          <div class="form-label">City</div>
+          <input class="form-input" type="text" placeholder="Medellín">
+        </div>
+      </div>
+      <div class="form-section-title">Payment method</div>
+      <div class="payment-option selected">
+        <div class="radio-circle"><div class="radio-fill"></div></div>
+        <div><div class="pm-name">Nequi</div><div class="pm-sub">Payment link — 1.5% fee</div></div>
+      </div>
+      <div class="payment-option">
+        <div class="radio-circle"></div>
+        <div><div class="pm-name">Daviplata</div><div class="pm-sub">Direct payment — free</div></div>
+      </div>
+      <div class="payment-option">
+        <div class="radio-circle"></div>
+        <div><div class="pm-name">Bre-B / Llave</div><div class="pm-sub">Instant transfer — free · any bank</div></div>
+      </div>
+      <div class="payment-option">
+        <div class="radio-circle"></div>
+        <div><div class="pm-name">Cash on delivery</div><div class="pm-sub">Pay when you receive · Coordinadora</div></div>
+      </div>
+      <button class="checkout-submit">Continue →</button>
+    </div>
+    <div class="checkout-right">
+      <div class="order-title">Order summary</div>
+      <div class="order-item">
+        <div class="order-thumb"></div>
+        <div style="flex:1;">
+          <div class="order-name">Basic Black Tee</div>
+          <div class="order-meta">Size S · Color Black · Qty 1</div>
+        </div>
+        <div class="order-price">$ ——,———</div>
+      </div>
+      <div class="order-total-row"><span>Subtotal</span><span>$ ——,———</span></div>
+      <div class="order-total-row"><span>Shipping — Coordinadora</span><span>$ ——,———</span></div>
+      <div class="order-total-row grand"><span>Total</span><span>$ ——,———</span></div>
+      <div class="shipping-note">
+        📦 Shipping via Coordinadora · Medellín & nationwide<br>
+        📅 Estimated delivery: 1–3 business days<br>
+        🔒 100% secure checkout
+      </div>
+    </div>
+  </div>
+</div><!-- /checkout -->
+
+</div><!-- /main -->
+</div><!-- /shell -->
+
+<script>
+// ─── DATA-TEXT for chromatic aberration ───
+document.querySelectorAll('.piece-name, .shop-name').forEach(el => {
+  el.setAttribute('data-text', el.textContent);
+});
+
+// ─── PAGE NAVIGATION ───
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('main').scrollTop = 0;
+}
+
+// ─── FALL SHAKE ───
+function doShake() {
+  const el = document.getElementById('fall-word');
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+}
+document.getElementById('fall-word').addEventListener('animationend', function() {
+  this.classList.remove('shake');
+});
+
+// ─── ROTATING PHRASES ───
+const phrases = [
+  "LOSE YOURSELF IN THE RHYTHM<br>BECOME SOMETHING ELSE",
+  "BUILT FOR NIGHTS THAT DON'T END.<br>DESIGNED FOR PEOPLE WHO DON'T STAY THE SAME.",
+  "KEEP FALLING<br>KEEP RISING"
+];
+let phraseIdx = 0;
+const phraseEl = document.getElementById('phrase-display');
+setInterval(() => {
+  phraseIdx = (phraseIdx + 1) % phrases.length;
+  phraseEl.style.opacity = '0';
+  phraseEl.style.transform = 'translateY(12px)';
+  setTimeout(() => {
+    phraseEl.innerHTML = phrases[phraseIdx];
+    phraseEl.style.animation = 'none';
+    phraseEl.style.opacity = '0';
+    phraseEl.style.transform = 'translateY(12px)';
+    phraseEl.style.transition = 'all 0.7s ease';
+    setTimeout(() => {
+      phraseEl.style.opacity = '1';
+      phraseEl.style.transform = 'translateY(0)';
+    }, 50);
+  }, 700);
+}, 6000);
+
+// ─── FILTER BUTTONS ───
+function setFilter(el) {
+  // visual: mark active button
+  el.closest('.filter-bar').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+
+  // logic: get which filter was clicked
+  const filter = el.getAttribute('data-filter');
+  const cards = document.querySelectorAll('.shop-grid .shop-card');
+
+  cards.forEach(card => {
+    if (filter === 'all') {
+      card.style.display = '';
+      return;
+    }
+    // match against collection, category, or color
+    const matches =
+      card.getAttribute('data-collection') === filter ||
+      card.getAttribute('data-category')   === filter ||
+      card.getAttribute('data-color')      === filter;
+    card.style.display = matches ? '' : 'none';
+  });
+}
+
+// ─── SIZE OPTS CLICK ───
+document.querySelectorAll('.size-row').forEach(row => {
+  row.querySelectorAll('.size-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      row.querySelectorAll('.size-opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+});
+
+// ─── COLOR OPTS CLICK ───
+document.querySelectorAll('.color-row').forEach(row => {
+  row.querySelectorAll('.color-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      row.querySelectorAll('.color-opt').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+});
+
+// ─── PAYMENT OPTIONS ───
+document.querySelectorAll('.payment-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.closest('.checkout-left').querySelectorAll('.payment-option').forEach(o => {
+      o.classList.remove('selected');
+      o.querySelector('.radio-circle').innerHTML = '';
+    });
+    opt.classList.add('selected');
+    opt.querySelector('.radio-circle').innerHTML = '<div class="radio-fill"></div>';
+  });
+});
+
+// ─── THUMB GALLERY ───
+document.querySelectorAll('.thumb').forEach(t => {
+  t.addEventListener('click', () => {
+    t.closest('.thumb-row').querySelectorAll('.thumb').forEach(th => th.classList.remove('active'));
+    t.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
